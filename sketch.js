@@ -3,13 +3,21 @@ var backgroundImage, car1_img, car2_img, track;
 var database, gameState;
 var form, player, playerCount;
 var allPlayers, car1, car2;
+
+//spdm 1 e 2 são imagens, spdm é o sprite 
+var spdm1,spdm2,spdm;
+
+
+
 var cars = [];
 
 function preload() {
-  backgroundImage = loadImage("planodefundo.png");
-  car1_img = loadImage("car1.png");
-  car2_img = loadImage("car2.png");
+  backgroundImage = loadImage("bg.png");
+  car1_img = loadImage("FerrariCalifornia.png");
+  car2_img = loadImage("AcuraSuv.png");
   track = loadImage("track.jpg");
+  spdm1 = loadImage("spdm1.png")
+  spdm2 = loadImage("spdm2.png")
 }
 
 function setup() {
@@ -29,6 +37,12 @@ function draw() {
   if (gameState === 1) {
     game.play();
   }
+
+  spdm = createSprite(200,200);
+  spdm.addImage(spdm1);
+
+
+  drawSprites();
 }
 
 function windowResized() {

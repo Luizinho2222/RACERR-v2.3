@@ -2,7 +2,7 @@ class Form {
   constructor() {
     this.input = createInput("").attribute("placeholder", "Nickname");
     this.playButton = createButton("Jogar");
-    this.titleImg = createImg("TITULO.png", "game title");
+    this.titleImg = createImg("TrackName.png", "game title");
     this.greeting = createElement("h2");
   }
 
