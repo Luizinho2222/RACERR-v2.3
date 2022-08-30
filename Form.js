@@ -32,7 +32,7 @@ class Form {
       this.playButton.hide();
       var message = `
       Olá ${this.input.value()}
-      </br>Loading...`;
+      </br>                                         Loading...`;
       this.greeting.html(message);
       playerCount += 1;
       player.name = this.input.value();

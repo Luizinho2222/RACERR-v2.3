@@ -1,5 +1,15 @@
 class Game {
-  constructor() {}
+  constructor() {
+
+    //Copiado de v3.1 (correction)
+    this.resetTitle = createElement("h2");
+    this.resetButton = createButton("");
+
+    this.leadeboardTitle = createElement("h2");
+
+    this.leader1 = createElement("h2");
+    this.leader2 = createElement("h2");
+  }
 
   getState() {
     var gameStateRef = database.ref("gameState");
@@ -30,11 +40,24 @@ class Game {
 
     cars = [car1, car2];
   }
-
+  
   handleElements() {
     form.hide();
     form.titleImg.position(40, 50);
     form.titleImg.class("gameTitleAfterEffect");
+  
+    form.hide();
+    form.titleImg.position(40, 50);
+    form.titleImg.class("gameTitleAfterEffect");
+    this.resetTitle.html("RESET"); 
+    this.resetTitle.class("RESET");
+    this.resetTitle.position(width / 2 + 200, 40);
+    this.resetButton.class("resetButton");
+    this.resetButton.position(width / 2 + 230, 100);
+    this.leaderboardTitle.html("LeaderBoard");
+    this.leaderboardTitle.class("resetText");
+    this.leaderboardTitle.position(width / 3 - 60, 40);
+  
   }
 
   play() {
@@ -77,24 +100,84 @@ class Game {
       drawSprites();
     }
   }
+  handleResetButton() {
+    this.resetButton.mousePressed(() => {
+      database.ref("/").set({
+        playerCount: 0,
+        gameState: 0,
+        players: {}
+      });
+      window.location.reload();
+    });
+  }
+
+  showLeaderboard() {
+    var leader1, leader2;
+    var players = Object.values(allPlayers);
+    if (
+      (players[0].rank === 0 && players[1].rank === 0) ||
+      players[0].rank === 1
+    ) {
+      //Copiado de v3.1 (correction)
+      // &emsp;    Essa etiqueta é usada para exibir quatro espaços.
+      leader1 =
+        players[0].rank +
+        "&emsp;" +
+        players[0].name +
+        "&emsp;" +
+        players[0].score;
+
+      leader2 =
+        players[1].rank +
+        "&emsp;" +
+        players[1].name +
+        "&emsp;" +
+        players[1].score;
+    }
+
+    if (players[1].rank === 1) {
+      leader1 =
+        players[1].rank +
+        "&emsp;" +
+        players[1].name +
+        "&emsp;" +
+        players[1].score;
+
+      leader2 =
+        players[0].rank +
+        "&emsp;" +
+        players[0].name +
+        "&emsp;" +
+        players[0].score;
+    }
+
+    this.leader1.html(leader1);
+    this.leader2.html(leader2);
+  }
 
   handlePlayerControls() {
-    //manipulando eventos de teclado
+    
     if (keyIsDown(UP_ARROW)) {
       player.positionY += 50;
+      player.update();
     }
     if (keyIsDown(DOWN_ARROW)) {
       player.positionY -= 10;  
+      player.update();
     }
     if (keyIsDown(RIGHT_ARROW)) {
       player.positionX += 4; 
+      player.update();
     }
     if (keyIsDown(LEFT_ARROW)) {
       player.positionX -= 4;
+      player.update();
     }
     if (keyIsDown(SPACE)) {
       player.rotate(180); 
+      player.update();
     }
-    player.update();
+    
   }
+
 }

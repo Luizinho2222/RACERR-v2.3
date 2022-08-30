@@ -6,7 +6,7 @@ html, body {
 
 @font-face {
   font-family: vollkorn;
-  src: url(./assets/Vollkorn-Bold.ttf);
+  src: url(Vollkorn-Bold.ttf);
 }
 
 canvas {
