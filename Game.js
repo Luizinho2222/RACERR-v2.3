@@ -31,12 +31,12 @@ class Game {
     form.display();
 
     car1 = createSprite(width / 2 - 50, height - 100);
-    car1.addImage("FerrariCalifornia", car1_img);
-    car1.scale = 0.07;
+    car1.addImage("car1_img", car1_img);
+    car1.scale = 0.3;
 
     car2 = createSprite(width / 2 + 100, height - 100);
-    car2.addImage("AcuraSuv", car2_img);
-    car2.scale = 0.07;
+    car2.addImage("car2_img", car2_img);
+    car2.scale = 0.3;
 
     cars = [car1, car2];
   }
@@ -68,13 +68,10 @@ class Game {
     if (allPlayers !== undefined) {
       image(track, 0, -height * 5, width, height * 6);
 
-      //índice da matriz
       var index = 0;
       for (var plr in allPlayers) {
-        //adicione 1 ao índice para cada loop
+        
         index = index + 1;
-
-        //use os dados do banco de dados para exibir os carros nas direções x e y
         var x = allPlayers[plr].positionX;
         var y = height - allPlayers[plr].positionY;
 
@@ -120,6 +117,7 @@ class Game {
     ) {
       //Copiado de v3.1 (correction)
       // &emsp;    Essa etiqueta é usada para exibir quatro espaços.
+
       leader1 =
         players[0].rank +
         "&emsp;" +

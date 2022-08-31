@@ -32,34 +32,8 @@ class Player {
       
       this.positionX = data.positionX;
       this.positionY = data.positionY;
-
-
       })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  }
+ }
   
   getCount() {
     var playerCountRef = database.ref("playerCount");
